@@ -5,8 +5,8 @@
 // --load your mysql database on pe07 with the pizza db
 // Then this code figures out which setup to use at runtime
 if (gethostname() === 'pe07') {
-    $username = 'xxxx';  // CHANGE THIS to your cs.umb.edu username
-    $password = 'xxxx';  // CHANGE THIS to your mysql DB password on pe07 
+    $username = 'saidutt';  // CHANGE THIS to your cs.umb.edu username
+    $password = 'saidutt';  // CHANGE THIS to your mysql DB password on pe07 
     $dsn = 'mysql:host=localhost;dbname='. $username . 'db';
 } else {  // dev machine, can create pizzadb
     $dsn = 'mysql:host=localhost;dbname=pizzadb';

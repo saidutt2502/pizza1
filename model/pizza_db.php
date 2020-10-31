@@ -27,11 +27,35 @@ function get_all_users($db) {
 
 
 function get_selected_users_orders($db,$user_id) {
-    $query = 'SELECT pizza_orders.id,shop_users.username,pizza_orders.status FROM pizza_orders join shop_users on pizza_orders.user_id = shop_users.id join menu_sizes on menu_sizes.id = pizza_orders.size where pizza_orders.user_id  = '.$user_id.' order by pizza_orders.id asc ';
+    $query = 'SELECT pizza_orders.id,shop_users.username,shop_users.room,pizza_orders.day,pizza_orders.status FROM pizza_orders join shop_users on pizza_orders.user_id = shop_users.id join menu_sizes on menu_sizes.id = pizza_orders.size where pizza_orders.user_id  = '.$user_id.' order by pizza_orders.id asc ';
     $statement = $db->prepare($query);
     $statement->execute();
     $orders = $statement->fetchAll();
     return $orders;    
+}
+
+
+function get_selected_users_orders_baked($db,$user_id) {
+
+    $query = 'SELECT pizza_orders.id,pizza_orders.status FROM pizza_orders where pizza_orders.user_id  = '.$user_id.' AND pizza_orders.status = "Baked" ';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $orders = $statement->fetchAll();
+
+    if(count($orders) > 0 ){
+        return true;
+    }else{
+        return false;
+    }
+      
+}
+
+function get_selected_users_name($db,$user_id) {
+    $query = 'SELECT username FROM  shop_users where id  = '.$user_id.'';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $user = $statement->fetchAll();
+    return $user;    
 }
 
 

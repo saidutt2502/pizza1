@@ -49,25 +49,31 @@
             <tr>
                 <th>Order Id</th>
                 <th>User</th>
+                <th>Room</th>
                 <th>Status</th>
             </tr>
             <?php foreach ($user_orders as $each_order) { ?>
                 <tr>
                     <td><?php echo $each_order['id']; ?></td>
                     <td><?php echo $each_order['username']; ?></td>
+                    <td><?php echo $each_order['room']; ?></td>
                     <td><?php echo $each_order['status']; ?></td>
                 </tr>
             <?php } ?>
         </table>
-        <?php }else{ ?>
+        <?php }else if($selected_user == 0){ ?>
             <h3>No User Selected</h3>
+        <?php } else if($selected_user != 0 && $user_orders == null) { ?>
+            <h3><?php echo $username[0]['username']; ?> does not have any Orders</h3>
         <?php } ?>
 
+        <?php if($baked_orders != null) { ?>
             <form method="POST" >
             <input type="hidden" id="acknowledge" name="action" value="acknowledge">
             <input type="hidden" id="selected_user" name="selected_user" value=<?php echo $selected_user; ?>>
             <input type="submit" value="Acknowledge Receipt of baked Pizza" />
             </form>
+        <?php } ?>
 
         <p>
             <li><a href="?action=show_order_form&user_id=<?php echo $selected_user; ?>">Order Pizza</a></li>

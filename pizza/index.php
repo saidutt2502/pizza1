@@ -16,6 +16,7 @@ $toppings = get_pizza_toppings($db);
 $users = get_all_users($db);
 $user_orders = null;
 $selected_user = 0;
+$baked_orders = false;
 
 if ($action == 'welcome') {
     include('student_welcome.php');
@@ -23,7 +24,9 @@ if ($action == 'welcome') {
 } else if ($action == 'select_user') {
     $user_id = filter_input(INPUT_POST, 'user_id');
     $selected_user = $user_id;
+    $username = get_selected_users_name($db, $user_id);
     $user_orders = get_selected_users_orders($db, $user_id);
+    $baked_orders = get_selected_users_orders_baked($db, $user_id);
     include('student_welcome.php');
 } else if ($action == 'show_order_form') {
     $selected_user = filter_input(INPUT_GET, 'user_id');

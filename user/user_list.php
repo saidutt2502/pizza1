@@ -10,11 +10,15 @@
                 <th></th>
             </tr>
             <?php foreach ($user_list as $each_user) { ?>
+                <form method="POST" >
                 <tr>
                     <td><?php echo $each_user['username']; ?></td>
                     <td><?php echo $each_user['room']; ?></td>
-                    <td><button type="button">Delete</button></td>
+                    <input type="hidden" name="action" value="delete_user">
+                    <input type="hidden" name="user_id" value="<?php echo $each_user['id']; ?>">
+                    <td><input type="submit" value="Delete" /></td>
                 </tr>
+                </form>
             <?php } ?>
         </table>
         <p>

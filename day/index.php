@@ -12,8 +12,6 @@ if ($action == NULL) {
     }
 }
 
-$current_day = 1;  // TODO: get day from DB
-
 if ($action == 'initial_db') {
     try {
         initial_db($db);
@@ -25,6 +23,8 @@ if ($action == 'initial_db') {
     }
 }else if ($action == 'list_orders') {
     try {
+        $current_day = get_current_day($db);
+        $current_day = $current_day[0]['current_day'];
         $orders = get_current_day_order($db,$current_day);
         include('day_list.php');
     } catch (PDOException $e) {
@@ -33,7 +33,13 @@ if ($action == 'initial_db') {
     }
 }else if ($action == 'next_day') {
     try {
-        $current_day++;
+        $current_day = get_current_day($db);
+        $current_day = $current_day[0]['current_day'];
+        $day_change = change_current_day($db,$current_day);
+
+        $current_day = get_current_day($db);
+        $current_day = $current_day[0]['current_day'];
+
         $orders = get_current_day_order($db,$current_day);
         include('day_list.php');
     } catch (PDOException $e) {

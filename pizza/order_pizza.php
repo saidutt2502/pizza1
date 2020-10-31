@@ -14,17 +14,20 @@
             <h3>Toppings</h3>
             <?php foreach ($toppings as $each_toppings) { ?>
                 <input type="checkbox" id="toppings" name="toppings[]" value=<?php echo $each_toppings['id']; ?>>
-                <label><?php echo $each_toppings['topping']; ?></label>
+                <label><?php echo $each_toppings['topping']; ?></label><br>
             <?php } ?>
+            <br><br>
 
-            <h3>Username</h3>
+            <label for="room">Username:</label>
             <select name="user_id" id="user_id">
             <?php foreach ($users as $each_user) { ?>
                 <option value=<?php echo $each_user['id']; ?>><?php echo $each_user['username']; ?></option>
                 <?php } ?>
             </select> 
+            <br><br>
             <input type="hidden" id="action" name="action" value="order_pizza">
             <input type="submit" value="Order Pizza" />
+            <br><br>
         </form>
 </section>
 </main>

@@ -9,6 +9,14 @@ function add_user($db, $user_name,$room)
     return true; 
 }
 
+function delete_user($db, $user_id)  
+{
+    $query = 'DELETE FROM shop_users where id = '.$user_id.' '; 
+    $statement = $db->prepare($query);
+    $statement->execute();
+    return true; 
+}
+
 function get_users($db) {
     $query = 'SELECT * FROM shop_users';
     $statement = $db->prepare($query);

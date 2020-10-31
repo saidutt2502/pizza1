@@ -21,6 +21,10 @@ if ($action == 'list_users') {
     }
 } else if ($action == 'show_add_form') {
     include('user_add.php');
+}else if ($action == 'delete_user') {
+    $user_id = filter_input(INPUT_POST, 'user_id');
+    $delete_user = delete_user($db,$user_id);
+    header("Location: .");
 } else if ($action == 'add_user') {
     $user_name = filter_input(INPUT_POST, 'user_name');
     $room = filter_input(INPUT_POST, 'room');

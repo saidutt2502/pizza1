@@ -79,6 +79,17 @@ li.horizontal {
     width: 6em;
     padding-right: 1em;
 }
+
+.input {
+    float: left;
+    width: 12em;
+    margin-bottom: .5em;
+}
+.label {
+    float: left;
+    width: 5em;
+    padding-right: 1em;
+}
 br {
     clear: left;
 }
